@@ -1,6 +1,7 @@
 package com.restapi.repository;
 
 import java.sql.ResultSet;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.restapi.controller.UserController;
 import com.restapi.exception.UserNotFoundException;
 import com.restapi.model.User;
 
@@ -27,7 +27,7 @@ public class UserRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	private static final Logger logger=LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger=LoggerFactory.getLogger(UserRepository.class);
 
 	
 	private final String SELECT_ALL= "SELECT * FROM user_details";

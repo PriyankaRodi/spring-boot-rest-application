@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.restapi.controller.UserController;
 import com.restapi.exception.UserCreationException;
 import com.restapi.exception.UserNotFoundException;
 import com.restapi.model.User;
@@ -26,7 +25,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	private static final Logger logger=LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger=LoggerFactory.getLogger(UserService.class);
 
 	/*return all user*/
 	public List<User> getAll() throws UserNotFoundException,Exception {
