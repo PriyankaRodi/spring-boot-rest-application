@@ -1,0 +1,1 @@
+INSERT INTO user_details (firstName,lastName,gender,age) values ('priyanka', 'rodi', 'female', 27)
