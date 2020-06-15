@@ -3,11 +3,16 @@ package com.restapi.repository;
 import java.sql.ResultSet;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import com.restapi.controller.UserController;
+import com.restapi.exception.UserNotFoundException;
 import com.restapi.model.User;
 
 
@@ -21,6 +26,8 @@ public class UserRepository {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	private static final Logger logger=LoggerFactory.getLogger(UserController.class);
 
 	
 	private final String SELECT_ALL= "SELECT * FROM user_details";
@@ -37,9 +44,14 @@ public class UserRepository {
 		user.setAge(rs.getInt(5));
 		return user;
 	};
-	public List<User> findAll() throws Exception{
+	public List<User> findAll() throws UserNotFoundException,Exception{
 		// TODO Auto-generated method stub
-		return jdbcTemplate.query(SELECT_ALL, rowMapper);
+		List<User> userList=jdbcTemplate.query(SELECT_ALL, rowMapper);
+		if(userList.size()>0) {
+			return userList;
+		}else {
+			throw new UserNotFoundException("records not available in database");
+		}
 	}
 	
 	public boolean addUser(User user) throws Exception {
@@ -49,7 +61,7 @@ public class UserRepository {
 			return false;
 	}
 
-	public User findByUserId(int userId) throws Exception{
+	public User findByUserId(int userId) throws DataAccessException,Exception{
 		// TODO Auto-generated method stub
 		return jdbcTemplate.queryForObject(SELECT_BY_USERID,new Object[] {userId},rowMapper);
 		 

@@ -44,4 +44,8 @@ public class ErrorDetails {
 	    this.message = message;
 	    this.details = details;
 	  }
+	  public ErrorDetails(String message) {
+		    super();
+		    this.message=message;
+		    }
 }
