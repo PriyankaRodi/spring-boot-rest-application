@@ -65,7 +65,7 @@ class UserControllerTest {
 		this.userList.add(mockUser1);
 		this.userList.add(mockUser2);
 	}
-	
+	/*test case for getAll()*/
 	@Test
 	public void testGetAll() throws Exception{
 		
@@ -80,6 +80,7 @@ class UserControllerTest {
 		assertEquals(expectedJson, outputInJson);
 		
 	}
+	/*test case for addUser()*/
 	@Test
 	public void testAddUser() throws Exception
 	{
@@ -102,7 +103,7 @@ class UserControllerTest {
 				assertEquals(HttpStatus.OK.value(), response.getStatus());
 	}
 	
-	
+	/*test case for getUserById()*/
 	@Test
 	public void testGetUserById() throws Exception{
 		
@@ -117,6 +118,7 @@ class UserControllerTest {
 		assertEquals(expectedJson, outputInJson);
 	}
 	
+	/*test case for addAll()*/
 	@Test
 	public void testAddAll() throws Exception{
 		String inputInJson =this.mapToJson(this.userList);
