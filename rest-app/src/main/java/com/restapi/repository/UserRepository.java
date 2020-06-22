@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,12 @@ public class UserRepository {
 	private final String INSERT_USER="INSERT INTO user_details (firstName,lastName,gender,age) values (?, ?, ?,?)";
 	private final String SELECT_BY_USERID="SELECT * from user_details where userId=?";
 	
+	
+	
+	  public void setDataSource(DataSource dataSource) { jdbcTemplate = new
+	  JdbcTemplate(dataSource); }
+	 
+	 
 	private RowMapper<User> rowMapper =(ResultSet rs, int rowNum)->{
 		User user=new User();
 		user.setUserId(rs.getInt(1));
